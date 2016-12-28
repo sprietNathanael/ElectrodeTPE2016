@@ -18,7 +18,16 @@ void loop()
 
 void lightWholeLedsArray(char *ledsArray, int arraySize)
 {
-  for(int i = 0; i < arraySize; i++)
+  lightSomeOfLedsArray(ledsArray,arraySize,ledNumber);
+}
+
+void lightSomeOfLedsArray(char *ledsArray, int arraySize, int numberOfLedsToLight)
+{
+  if(numberOfLedsToLight > arraySize)
+  {
+    numberOfLedsToLight = arraySize;
+  }
+  for(int i = 0; i < numberOfLedsToLight; i++)
   {
     digitalWrite(ledsArray[i], HIGH);
     delay(0.1);
