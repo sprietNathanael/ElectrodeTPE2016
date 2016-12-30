@@ -1,9 +1,13 @@
-const int ledNumber = 10;
+#include <Servo.h>
+
 char leds[ledNumber];
 const char firstLed = 1;
 const int maxAnalogValue = 1023;
 int analogValue = 0;
 const char analogPin = 0;
+Servo servomotor;
+int servoPin = 12;
+int val = 0;
 
 void setup()
 {
@@ -12,13 +16,15 @@ void setup()
     leds[ledIncrement] = firstLed+ledIncrement;
     pinMode(leds[ledIncrement], OUTPUT);
   }
+  servomotor.attach(servoPin);
 }
 
 void loop()
 {
   //lightWholeLedsArray(leds,ledNumber);  
-  int val = analogRead(analogPin);
+  val = analogRead(analogPin);
   lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(val));
+  intToServo(val);
   
 }
 
@@ -48,3 +54,8 @@ int intToNumberOfLedsToLight(int valueToProcess)
   return(numberOfLedsToLight);
 }
 
+void intToServo(int valueToProcess)
+{
+  int valueToWrite = map(valueToProcess, 0, 1023, 0, 180);
+  servomotor.write(valueToWrite);
+}
