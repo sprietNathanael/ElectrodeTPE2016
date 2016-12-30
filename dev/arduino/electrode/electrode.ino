@@ -43,7 +43,8 @@ void lightSomeOfLedsArray(char *ledsArray, int arraySize, int numberOfLedsToLigh
 
 int intToNumberOfLedsToLight(int valueToProcess)
 {
-  int numberOfLedsToLight= ((100*valueToProcess)/maxAnalogValue)/10;
+  //int numberOfLedsToLight= ((100*valueToProcess)/maxAnalogValue)/10;
+  int numberOfLedsToLight = map(valueToProcess,0,1023,0,10);
   return(numberOfLedsToLight);
 }
 
