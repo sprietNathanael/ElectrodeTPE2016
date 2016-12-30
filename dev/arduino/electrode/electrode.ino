@@ -1,7 +1,8 @@
 #include <Servo.h>
 
+const int ledNumber = 9;
 char leds[ledNumber];
-const char firstLed = 1;
+const char firstLed = 3;
 const int maxAnalogValue = 1023;
 int analogValue = 0;
 const char analogPin = 0;
