@@ -2,6 +2,8 @@ const int ledNumber = 10;
 char leds[ledNumber];
 const char firstLed = 1;
 const int maxAnalogValue = 1023;
+int analogValue = 0;
+const char analogPin = 0;
 
 void setup()
 {
@@ -15,6 +17,8 @@ void setup()
 void loop()
 {
   //lightWholeLedsArray(leds,ledNumber);  
+  int val = analogRead(analogPin);
+  lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(val));
   
 }
 
