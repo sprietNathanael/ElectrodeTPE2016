@@ -24,7 +24,7 @@ void loop()
 {
   //lightWholeLedsArray(leds,ledNumber);  
   val = analogRead(analogPin);
-  lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(val));
+  lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(val,ledNumber));
   intToServo(val);
   
 }
@@ -48,10 +48,10 @@ void lightSomeOfLedsArray(char *ledsArray, int arraySize, int numberOfLedsToLigh
   }
 }
 
-int intToNumberOfLedsToLight(int valueToProcess)
+int intToNumberOfLedsToLight(int valueToProcess, int ledQuantity)
 {
-  //int numberOfLedsToLight= ((100*valueToProcess)/maxAnalogValue)/10;
-  int numberOfLedsToLight = map(valueToProcess,0,1023,0,10);
+  //int numberOfLedsToLight= ((100*valueToProcess)/maxAnalogValue)/ledQuantity;
+  int numberOfLedsToLight = map(valueToProcess,0,1023,0,ledQuantity);
   return(numberOfLedsToLight);
 }
 
