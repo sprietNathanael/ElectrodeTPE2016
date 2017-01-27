@@ -9,6 +9,7 @@ const char analogPin = 0;
 Servo servomotor;
 int servoPin = 12;
 int val = 0;
+int filtredVal = 0;
 
 void setup()
 {
@@ -22,11 +23,12 @@ void setup()
 
 void loop()
 {
-  //lightWholeLedsArray(leds,ledNumber);  
+  //lightWholeLedsArray(leds,ledNumber);
   val = analogRead(analogPin);
-  lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(val,ledNumber));
-  intToServo(val);
-  
+  filtredVal = (int)((val*0.1)+(0.9*filtredVal));
+  lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(filtredVal,ledNumber));
+  intToServo(filtredVal);
+
 }
 
 void lightWholeLedsArray(char *ledsArray, int arraySize)
