@@ -21,13 +21,13 @@
 /*****Leds******/
 
 // The number of leds
-const int ledNumber = 9;
+const int ledNumber = 10;
 
 // An array of leds containing ledNumber entries
 char leds[ledNumber];
 
 // The pin number of the first led
-const char firstLed = 3;
+const char firstLed = 2;
 
 /*****Analog input******/
 
@@ -49,7 +49,7 @@ int filtredVal = 0;
 Servo servomotor;
 
 // The pin number of the servomotor command
-int servoPin = 12;
+int servoPin = 11;
 
 
 /****************** Main Functions **********************/
@@ -92,6 +92,7 @@ void loop()
     // Applies a low-pass filter : filtredValue = (readValue * a) + (b * previousFiltredValue)
     // with a+b = 1
     filtredVal = (int)((analogValue*0.1)+(0.9*filtredVal));
+    //filtredVal = analogValue;
 
     // Lights the corresponding number of leds according to the analog value
     lightSomeOfLedsArray(leds, ledNumber, intToNumberOfLedsToLight(filtredVal,ledNumber));
